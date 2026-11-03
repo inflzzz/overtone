@@ -128,6 +128,10 @@
     footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
     footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
+    .video-row { grid-template-columns: 1fr 1fr; }
+    .reel { justify-self: center; width: min(340px, 100%); aspect-ratio: 9 / 16; border-radius: 38px; border: 10px solid #0c0c0b; overflow: hidden; box-shadow: var(--shadow); background: #0c0c0b; }
+    .reel video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
     @media (max-width: 900px) {
       .top nav { display: none; }
       .grid { grid-template-columns: 1fr 1fr; }
@@ -151,6 +155,7 @@
     <div class="wrap">
       <a class="brand" href="#"><img src="img/icone.svg" alt="">Overtone</a>
       <nav>
+        <a href="#video">Vídeo</a>
         <a href="#recursos">Recursos</a>
         <a href="#audio">Áudio</a>
         <a href="#palco">Palco</a>
@@ -177,6 +182,28 @@
       <p class="note">Windows 10 e 11 · funciona sem internet</p>
       <div class="shot"><img src="img/editor.png" alt="O Overtone com uma cifra aberta e o painel de diagramas de acordes" width="2880" height="1800"></div>
     </div>
+
+    <section id="video">
+      <div class="wrap">
+        <div class="row video-row">
+          <div class="text">
+            <h2>Veja o Overtone em 1 minuto</h2>
+            <p>Do acorde preso na sílaba ao truque do final: ele ouve a música e monta a cifra para você.</p>
+            <ul>
+              <li>O acorde fica preso na sílaba, escreva o que quiser</li>
+              <li>O cantor pediu outro tom? Um clique</li>
+              <li>Afinador, metrônomo, modo palco e repertório</li>
+              <li>Coloque o áudio e ele monta um rascunho da cifra</li>
+            </ul>
+          </div>
+          <div class="reel">
+            <video controls playsinline preload="none" poster="img/video-capa.jpg" width="1080" height="1920" aria-label="Vídeo de apresentação do Overtone, 56 segundos, com legendas">
+              <source src="video/overtone-apresentacao.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="recursos">
       <div class="wrap">
