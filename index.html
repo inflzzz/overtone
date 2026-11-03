@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Overtone · editor de cifras</title>
+  <meta name="description" content="Editor de cifras no estilo Word: troca de tom, diagramas para todos os instrumentos de corda, áudio junto da cifra, biblioteca e modo palco.">
+  <meta property="og:title" content="Overtone · editor de cifras">
+  <meta property="og:description" content="Escreva, transponha e toque suas cifras. Para Windows e navegador.">
+  <meta property="og:image" content="img/editor.png">
+  <link rel="icon" href="img/icone.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --surface: #ffffff;
+      --soft: #f1efeb;
+      --ink: #1d1d1f;
+      --muted: #6b6a66;
+      --line: #e6e3de;
+      --accent: #c0262d;
+      --accent-ink: #ffffff;
+      --accent-soft: #fbeceb;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #111110;
+        --surface: #1a1a19;
+        --soft: #222221;
+        --ink: #f2f1ee;
+        --muted: #a09f9a;
+        --line: #2e2e2c;
+        --accent: #ff6b5e;
+        --accent-ink: #1a0b0a;
+        --accent-soft: #2c1816;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 40px rgba(0, 0, 0, 0.45);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+    .wrap { width: min(1120px, 100% - 32px); margin: 0 auto; }
+
+    /* top bar */
+    .top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; text-decoration: none; }
+    .brand img { width: 28px; height: 28px; }
+    .top nav { display: flex; gap: 28px; font-size: 15px; font-weight: 500; }
+    .top nav a { text-decoration: none; color: var(--muted); }
+    .top nav a:hover { color: var(--ink); }
+
+    /* buttons */
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 12px; font: inherit; font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink); transition: transform 0.15s, box-shadow 0.15s; }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .btn svg { width: 20px; height: 20px; flex: none; }
+    .btn small { font-weight: 500; opacity: 0.75; font-size: 13px; }
+
+    /* hero */
+    .hero { padding: 88px 0 56px; text-align: center; }
+    .eyebrow { display: inline-block; padding: 6px 14px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+    h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.08; letter-spacing: -0.03em; margin: 22px auto 18px; max-width: 14ch; font-weight: 800; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 46ch; margin: 0 auto 34px; }
+    .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .note { margin-top: 16px; font-size: 14px; color: var(--muted); }
+    .shot { margin: 56px auto 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
+
+    /* features */
+    section { padding: 72px 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
+    h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 12px; font-weight: 800; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px; }
+    .card .ic { width: 42px; height: 42px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; margin-bottom: 16px; }
+    .card .ic svg { width: 22px; height: 22px; }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    /* rows */
+    .row { display: grid; grid-template-columns: 1fr 1.35fr; gap: 56px; align-items: center; padding: 40px 0; }
+    .row.flip { grid-template-columns: 1.35fr 1fr; }
+    .row.flip .text { order: 2; }
+    .row .text h2 { font-size: clamp(26px, 3.2vw, 34px); }
+    .row .text p { color: var(--muted); margin: 0 0 16px; }
+    .row ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .row li { display: flex; gap: 10px; font-size: 15px; }
+    .row li::before { content: ''; flex: none; width: 18px; height: 18px; margin-top: 3px; border-radius: 50%; background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c0262d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 12px no-repeat; }
+    .frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface); }
+    .duo { position: relative; }
+    .duo .phone { position: absolute; right: -18px; bottom: -28px; width: 26%; border-radius: 18px; border: 6px solid #0c0c0b; box-shadow: var(--shadow); overflow: hidden; }
+
+    /* formats */
+    .formats { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .chip { padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-weight: 600; font-size: 15px; }
+    .chip span { color: var(--muted); font-weight: 500; }
+
+    /* download */
+    .download { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 56px 40px; text-align: center; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left; margin: 40px 0 0; counter-reset: s; }
+    .step { background: var(--soft); border-radius: 14px; padding: 20px; font-size: 15px; color: var(--muted); }
+    .step b { display: block; color: var(--ink); margin-bottom: 4px; font-size: 16px; }
+    .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+
+    /* faq */
+    .faq { max-width: 760px; margin: 0 auto; }
+    details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+    summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+    summary::after { content: '+'; color: var(--muted); font-weight: 400; font-size: 22px; line-height: 1; }
+    details[open] summary::after { content: '−'; }
+    details p { color: var(--muted); margin: 10px 0 0; font-size: 15px; }
+
+    footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .top nav { display: none; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .row, .row.flip { grid-template-columns: 1fr; gap: 28px; }
+      .row.flip .text { order: 0; }
+      .steps { grid-template-columns: 1fr; }
+      .duo .phone { right: 8px; bottom: -20px; }
+    }
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .hero { padding: 56px 0 32px; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 48px 0; }
+      .download { padding: 36px 20px; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#"><img src="img/icone.svg" alt="">Overtone</a>
+      <nav>
+        <a href="#recursos">Recursos</a>
+        <a href="#audio">Áudio</a>
+        <a href="#palco">Palco</a>
+        <a href="#baixar">Baixar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero wrap">
+      <span class="eyebrow">Para Windows e navegador</span>
+      <h1>Cifras com cara de <em>Word</em>.</h1>
+      <p class="lead">Escreva a letra, coloque os acordes na sílaba certa e mude o tom com um clique. Sem transpor na mão, nunca mais.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://github.com/inflzzz/overtone/releases/latest/download/Instalar-Overtone.exe">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
+          Baixar para Windows
+        </a>
+        <a class="btn" href="app/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+          Usar no navegador
+        </a>
+      </div>
+      <p class="note">Windows 10 e 11 · funciona sem internet</p>
+      <div class="shot"><img src="img/editor.png" alt="O Overtone com uma cifra aberta e o painel de diagramas de acordes" width="2880" height="1800"></div>
+    </div>
+
+    <section id="recursos">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Tudo para escrever cifras</h2>
+          <p>Um editor de verdade, com páginas, fontes e impressão, que entende de música.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17V7l-3 3M17 7v10l3-3"/></svg></div>
+            <h3>Troca de tom</h3>
+            <p>A música inteira ou só um trecho de um medley, com sustenido e bemol escritos do jeito que os músicos escrevem.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 4v16M12 4v16M17 4v16M5 8h14M5 12h14"/></svg></div>
+            <h3>Todos os instrumentos de corda</h3>
+            <p>Violão, guitarra, viola caipira, cavaquinho, ukulele, baixo, bandolim, violino, violoncelo, harpa e mais de 40 outros. E teclado.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg></div>
+            <h3>Notação brasileira</h3>
+            <p>Entende 7M, (9), 4, º, m7(b5), 7(13) e baixos invertidos. Figuras e símbolos musicais prontos para inserir.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4c-2 0-2 2-2 4s-2 4-2 4 2 2 2 4 0 4 2 4"/><path d="M13 12h7"/></svg></div>
+            <h3>Chave de repetição</h3>
+            <p>A chave } com 2x, 4x ou o que você quiser, que nunca cobre um acorde. Partes da música, tablatura e duas colunas.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+            <h3>Pronto para imprimir</h3>
+            <p>Cabeçalho com título, tom, BPM e compasso, numeração de página e marca d'água com o seu nome ou logo.</p>
+          </div>
+          <div class="card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/><path d="M18 15v6m-3-3h6"/></svg></div>
+            <h3>Cole de qualquer site</h3>
+            <p>Cole uma cifra de site, texto ou ChordPro e os acordes caem certinho em cima das sílabas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="audio">
+      <div class="wrap">
+        <div class="row">
+          <div class="text">
+            <h2>Toque junto com a gravação</h2>
+            <p>Anexe o áudio da música e ele aparece embaixo da cifra, com os acordes marcados na forma de onda.</p>
+            <ul>
+              <li>Repita um trecho e diminua a velocidade sem mudar o tom</li>
+              <li>O áudio muda de tom junto com a cifra</li>
+              <li>Acha os acordes, o tom e o BPM sozinho</li>
+              <li>Escreve a letra e monta um rascunho da cifra</li>
+              <li>Abre gravações de horas e corta só a música que você quer</li>
+            </ul>
+          </div>
+          <div class="frame"><img src="img/audio.png" alt="Faixa de áudio com forma de onda, acordes e trecho repetido" width="2880" height="1800"></div>
+        </div>
+
+        <div class="row flip" id="palco">
+          <div class="text">
+            <h2>Modo palco</h2>
+            <p>Tela cheia, letra grande e alto contraste para tocar ao vivo.</p>
+            <ul>
+              <li>Rolagem automática no ritmo da música</li>
+              <li>Pedal de virar página e toque na tela</li>
+              <li>Mude o tom só no palco, sem mexer no arquivo</li>
+              <li>Desenhos dos acordes ao lado, ou embaixo no celular</li>
+            </ul>
+          </div>
+          <div class="duo">
+            <div class="frame"><img src="img/palco.png" alt="Modo palco com a letra grande e os diagramas dos acordes" width="2880" height="1800"></div>
+            <img class="phone" src="img/palco-celular.png" alt="Modo palco num celular" width="780" height="1688">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="text">
+            <h2>Biblioteca e repertórios</h2>
+            <p>Todas as suas músicas num lugar só, e a sequência do culto ou do show pronta para o palco.</p>
+            <ul>
+              <li>Busca pelo nome, pela letra ou pelo tom</li>
+              <li>Pastas e importação de vários arquivos de uma vez</li>
+              <li>Repertórios que lembram o tom de cada música</li>
+              <li>Tema claro e escuro</li>
+            </ul>
+          </div>
+          <div class="frame"><img src="img/biblioteca-escuro.png" alt="Biblioteca de músicas no tema escuro" width="2880" height="1800"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Abre e salva o que você já usa</h2>
+          <p>Leve suas cifras para qualquer lugar.</p>
+        </div>
+        <div class="formats">
+          <span class="chip">.cifra <span>com o áudio junto</span></span>
+          <span class="chip">Word <span>.docx</span></span>
+          <span class="chip">PDF</span>
+          <span class="chip">Texto <span>.txt</span></span>
+          <span class="chip">ChordPro</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="baixar">
+      <div class="wrap">
+        <div class="download">
+          <h2>Baixe o Overtone</h2>
+          <p class="lead" style="margin-bottom: 28px">Instala em menos de um minuto e já abre com uma música de exemplo.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/inflzzz/overtone/releases/latest/download/Instalar-Overtone.exe">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
+              Baixar para Windows <small>2 MB</small>
+            </a>
+            <a class="btn" href="app/">Usar no navegador</a>
+          </div>
+          <div class="steps">
+            <div class="step"><b>Baixe o instalador</b>O arquivo "Instalar-Overtone.exe".</div>
+            <div class="step"><b>Abra o arquivo</b>Se o Windows mostrar "O Windows protegeu o computador", clique em <i>Mais informações</i> e depois em <i>Executar assim mesmo</i>.</div>
+            <div class="step"><b>Pronto</b>O Overtone fica no menu Iniciar, e os arquivos .cifra abrem com dois cliques.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap faq">
+        <div class="section-head"><h2>Perguntas</h2></div>
+        <details>
+          <summary>Precisa de internet?</summary>
+          <p>Não. Só a função de escrever a letra a partir do áudio baixa o modelo de voz na primeira vez que é usada.</p>
+        </details>
+        <details>
+          <summary>Onde ficam as minhas cifras?</summary>
+          <p>No seu computador. O Overtone guarda uma cópia automática a cada alteração, e você salva o arquivo onde quiser com Arquivo › Salvar.</p>
+        </details>
+        <details>
+          <summary>Por que o Windows mostra um aviso ao instalar?</summary>
+          <p>O instalador ainda não tem uma assinatura digital paga, então o Windows não reconhece quem publicou. O programa é seguro; clique em "Mais informações" e "Executar assim mesmo".</p>
+        </details>
+        <details>
+          <summary>Funciona no Mac ou no celular?</summary>
+          <p>Pelo navegador, sim: use o botão "Usar no navegador" no Chrome ou no Edge. O modo palco também se ajusta à tela de tablets e celulares.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Overtone · editor de cifras</span>
+      <span>Fontes Montserrat e Noto Music (SIL Open Font License)</span>
+    </div>
+  </footer>
+</body>
+</html>
