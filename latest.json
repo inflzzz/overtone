@@ -1,0 +1,11 @@
+{
+  "version": "1.0.1",
+  "notes": "Cópia de segurança da biblioteca, compartilhar como imagem, afinador, acordes simplificados com sugestão de capotraste, link do repertório para a banda e várias correções.",
+  "pub_date": "2026-11-03T17:19:14Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSdVBGaUljcUpUZnBoWGlXQVJHb1VXaVR6eGplemYxYm91N2hMUTkxVHIwLytaTTYwWnZkNE1zVWx1cHBZOHRwUlROQjBRUjU1VUZPdG5idHFHL05UOFRxWDJhMmlBTFE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzI2MzU0CWZpbGU6T3ZlcnRvbmVfMS4wLjFfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMC4xCjhFZ3E4dXBNWW5lRDhNT3hNTHJzaVVuZ2NseGtzdStTQTBBcUdPRWpNTEV1a2RzYWZVMkVZVlYreE13eExSbDdxemhmS2hhN2lhRmdBVFYreklhOEJBPT0K",
+      "url": "https://github.com/inflzzz/overtone/releases/download/v1.0.1/Instalar-Overtone.exe"
+    }
+  }
+}
