@@ -1,11 +1,11 @@
 {
-  "version": "1.1.1",
-  "notes": "Escrever a letra: agora pergunta a língua da música (português, inglês ou espanhol) e coloca a letra na página sozinha, com os acordes por cima.",
-  "pub_date": "2026-11-04T00:49:10Z",
+  "version": "1.1.2",
+  "notes": "Réguas em cima e do lado da página (arraste para mudar as margens; liga e desliga em Página > Régua). Colar do Cifra Club voltou a reconhecer os acordes e as partes. Mudar o tamanho da letra não joga mais os acordes por cima das palavras.",
+  "pub_date": "2026-11-04T01:04:54Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSdVBGaUljcUpUZnFWRjNHbWszcEh1bGdQNG82Q0VtanRIVW92UEFYUzZSdk1xMlZWYjI5YlFZK2dta2M5T2xPWkF0MnRGOTBjWVFaQTVzZGZRQjlkWmpXcUFab1I5TVEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzUzMzI3CWZpbGU6T3ZlcnRvbmVfMS4xLjFfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMS4xCk1BblRMQlVUWEpnQllqNGFkMVVkbHR2Slg2QXBrR1h3UmNGbGJKQnFvUmlCZHU5Yjk2aVdvdVNrQURZMEYyU2ZkSnZrNnNBMWduRU5hajNpU254ZUNBPT0K",
-      "url": "https://github.com/inflzzz/overtone/releases/download/v1.1.1/Instalar-Overtone.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSdVBGaUljcUpUZmg3VUtlbGVzT2Y2UlBQQS85TjhRSXI4cktTSlVQVmVVZ3gwcUs2YVpVMkR4NXJmS2tuOUFhSUw5VnI2NEVWc2djMzNBSk81eTczRWJpY21RSGZpd3dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzU0Mjk0CWZpbGU6T3ZlcnRvbmVfMS4xLjJfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMS4yCkhPZi9id055R0o5Nmhsak54eWU3cUhoa041NlJQV0hGK2ZXYVhPTW1pWFQxMEI2a2hidERTSFhCaVNxVkp1VjhBbHQ1dDhIK0J6YUVpQXJqQVZ3TkJnPT0K",
+      "url": "https://github.com/inflzzz/overtone/releases/download/v1.1.2/Instalar-Overtone.exe"
     }
   }
 }
