@@ -1,11 +1,11 @@
 {
-  "version": "1.1.2",
-  "notes": "Réguas em cima e do lado da página (arraste para mudar as margens; liga e desliga em Página > Régua). Colar do Cifra Club voltou a reconhecer os acordes e as partes. Mudar o tamanho da letra não joga mais os acordes por cima das palavras.",
-  "pub_date": "2026-11-04T01:04:54Z",
+  "version": "1.1.3",
+  "notes": "Abas: várias músicas abertas ao mesmo tempo, cada uma com o seu desfazer, ajustes e áudio. Abrir, Novo e a biblioteca abrem em outra aba; Ctrl+Tab troca e Ctrl+W fecha. As abas voltam quando você abre o programa de novo. Corrigido: o título digitado no cabeçalho podia ir para outra música ao trocar logo em seguida.",
+  "pub_date": "2026-11-04T01:25:37Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSdVBGaUljcUpUZmg3VUtlbGVzT2Y2UlBQQS85TjhRSXI4cktTSlVQVmVVZ3gwcUs2YVpVMkR4NXJmS2tuOUFhSUw5VnI2NEVWc2djMzNBSk81eTczRWJpY21RSGZpd3dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzU0Mjk0CWZpbGU6T3ZlcnRvbmVfMS4xLjJfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMS4yCkhPZi9id055R0o5Nmhsak54eWU3cUhoa041NlJQV0hGK2ZXYVhPTW1pWFQxMEI2a2hidERTSFhCaVNxVkp1VjhBbHQ1dDhIK0J6YUVpQXJqQVZ3TkJnPT0K",
-      "url": "https://github.com/inflzzz/overtone/releases/download/v1.1.2/Instalar-Overtone.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSdVBGaUljcUpUZmkzeisyQVFXQjVhd0lmYlFXbHZGRDl1d0w4Sk9ERGQrUElaNldnYWdIUHNBdXdjaUpVb1VPc0oxdHhHNHF5ZWhROEduRm5vbWNjWXMrdkFlYnc4b2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzU1NDczCWZpbGU6T3ZlcnRvbmVfMS4xLjNfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMS4zCnlIRTQrQWpSTFcvaVVHUVRrWW9JdVRDVmNhTlp6eE1UZE4vdnlGaVVhbzBKcjg5N2Y2RHd2aVFLdXl4amwzREpERzdKZ3U1K3dNekdWd2d0Zk4xbkRRPT0K",
+      "url": "https://github.com/inflzzz/overtone/releases/download/v1.1.3/Instalar-Overtone.exe"
     }
   }
 }

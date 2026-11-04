@@ -1,5 +1,5 @@
-// Overtone 1.1.2: keeps the app working without internet.
-const CACHE = 'overtone-1.1.2';
+// Overtone 1.1.3: keeps the app working without internet.
+const CACHE = 'overtone-1.1.3';
 const FILES = ['./', 'index.html', 'manifest.webmanifest', 'icon-256.png', 'icon-512.png'];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));
