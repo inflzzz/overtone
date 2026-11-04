@@ -1,11 +1,11 @@
 {
-  "version": "1.1.0",
-  "notes": "Nova aba Ferramentas (metrônomo, dicionário de acordes, que acorde é esse?, foto de cifra), batida do violão, avisos para a banda, contagem e controle pelo celular no palco, etiquetas, favoritas, versões e sincronização da biblioteca, tempo total do repertório.",
-  "pub_date": "2026-11-03T19:41:52Z",
+  "version": "1.1.1",
+  "notes": "Escrever a letra: agora pergunta a língua da música (português, inglês ou espanhol) e coloca a letra na página sozinha, com os acordes por cima.",
+  "pub_date": "2026-11-04T00:49:10Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSdVBGaUljcUpUZnNaZUphVDBYK1lDR0VNVUowUndYdU1KNHBiSTJjaXVPRnRDbGhSbXpobldLWldoQlltaTVVMDBnV0dEVFdVdWdqciticFBkai8wZ2RKL1pqTlQ2VGdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzM0NjA0CWZpbGU6T3ZlcnRvbmVfMS4xLjBfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMS4wCkRWTW1GV3RvUFZDY2c3Zy9yL0s2bGFaNGFNeGVuekpkOUh2M2Y0QlpmQzl3cytxWW9zeC95a3AyZVhCVGVPRTVvMGVGMXltMzYwRHBZUXFXSFlZZ0FBPT0K",
-      "url": "https://github.com/inflzzz/overtone/releases/download/v1.1.0/Instalar-Overtone.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSdVBGaUljcUpUZnFWRjNHbWszcEh1bGdQNG82Q0VtanRIVW92UEFYUzZSdk1xMlZWYjI5YlFZK2dta2M5T2xPWkF0MnRGOTBjWVFaQTVzZGZRQjlkWmpXcUFab1I5TVEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzUzMzI3CWZpbGU6T3ZlcnRvbmVfMS4xLjFfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMS4xCk1BblRMQlVUWEpnQllqNGFkMVVkbHR2Slg2QXBrR1h3UmNGbGJKQnFvUmlCZHU5Yjk2aVdvdVNrQURZMEYyU2ZkSnZrNnNBMWduRU5hajNpU254ZUNBPT0K",
+      "url": "https://github.com/inflzzz/overtone/releases/download/v1.1.1/Instalar-Overtone.exe"
     }
   }
 }
